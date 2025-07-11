@@ -1,0 +1,217 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #ff6600; /* สีส้มสดใส */
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.2em;
+}
+
+header p {
+    font-size: 1.1em;
+    margin-top: 5px;
+}
+
+#menu-container {
+    max-width: 900px;
+    margin: 2em auto;
+    padding: 1em;
+    display: grid; /* ใช้ Grid สำหรับจัดเรียงเมนู */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* ปรับตามขนาดหน้าจอ */
+    gap: 20px;
+}
+
+.menu-item {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    overflow: hidden; /* ซ่อนส่วนเกินของรูป */
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px); /* มีอนิเมชั่นเล็กน้อยเมื่อเมาส์ชี้ */
+}
+
+.menu-item img {
+    width: 100%;
+    height: 200px; /* กำหนดความสูงรูปภาพ */
+    object-fit: cover; /* ทำให้รูปภาพครอบคลุมพื้นที่โดยไม่เสียสัดส่วน */
+    display: block;
+}
+
+.item-details {
+    padding: 1em;
+}
+
+.item-details h3 {
+    margin-top: 0;
+    color: #ff6600;
+    font-size: 1.5em;
+}
+
+.item-details p {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.item-price {
+    font-size: 1.3em;
+    color: #333;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.add-to-cart-btn {
+    background-color: #4CAF50; /* สีกรีน */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #45a049;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+    margin-top: 2em;
+}
+
+.loading {
+    text-align: center;
+    font-size: 1.2em;
+    color: #777;
+    grid-column: 1 / -1; /* ให้ข้อความโหลดอยู่ตรงกลางเสมอ */
+}body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #ff6600; /* สีส้มสดใส */
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.2em;
+}
+
+header p {
+    font-size: 1.1em;
+    margin-top: 5px;
+}
+
+#menu-container {
+    max-width: 900px;
+    margin: 2em auto;
+    padding: 1em;
+    display: grid; /* ใช้ Grid สำหรับจัดเรียงเมนู */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* ปรับตามขนาดหน้าจอ */
+    gap: 20px;
+}
+
+.menu-item {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    overflow: hidden; /* ซ่อนส่วนเกินของรูป */
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px); /* มีอนิเมชั่นเล็กน้อยเมื่อเมาส์ชี้ */
+}
+
+.menu-item img {
+    width: 100%;
+    height: 200px; /* กำหนดความสูงรูปภาพ */
+    object-fit: cover; /* ทำให้รูปภาพครอบคลุมพื้นที่โดยไม่เสียสัดส่วน */
+    display: block;
+}
+
+.item-details {
+    padding: 1em;
+}
+
+.item-details h3 {
+    margin-top: 0;
+    color: #ff6600;
+    font-size: 1.5em;
+}
+
+.item-details p {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.item-price {
+    font-size: 1.3em;
+    color: #333;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.add-to-cart-btn {
+    background-color: #4CAF50; /* สีกรีน */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #45a049;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+    margin-top: 2em;
+}
+
+.loading {
+    text-align: center;
+    font-size: 1.2em;
+    color: #777;
+    grid-column: 1 / -1; /* ให้ข้อความโหลดอยู่ตรงกลางเสมอ */
+}
