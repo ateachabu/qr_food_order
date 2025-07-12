@@ -1,4 +1,4 @@
-// ข้อมูลเมนูอาหาร (เหมือนเดิม)
+// ข้อมูลเมนูอาหาร
 const menuItems = [
     {
         id: 1,
@@ -50,6 +50,11 @@ let cart = [];
 // ฟังก์ชันสำหรับแสดงรายการอาหาร
 function displayMenuItems(items) {
     const container = document.getElementById('menu-items-container');
+    // ตรวจสอบว่า container มีอยู่จริงหรือไม่ก่อนที่จะใช้งาน
+    if (!container) {
+        console.error("Error: Element with ID 'menu-items-container' not found.");
+        return;
+    }
     container.innerHTML = ''; // ลบข้อความ "กำลังโหลดเมนู..."
 
     items.forEach(item => {
@@ -90,6 +95,13 @@ function addToCart(itemId) {
 function updateCartDisplay() {
     const cartItemsElement = document.getElementById('cart-items');
     const cartTotalElement = document.getElementById('cart-total');
+
+    // ตรวจสอบว่า element มีอยู่จริงหรือไม่
+    if (!cartItemsElement || !cartTotalElement) {
+        console.error("Error: Cart elements not found. Check IDs 'cart-items' and 'cart-total'.");
+        return;
+    }
+
     let total = 0;
 
     // ล้างรายการเดิมในตะกร้า
@@ -124,17 +136,49 @@ function checkout() {
 
     const confirmation = confirm("ยืนยันการสั่งซื้อหรือไม่?");
     if (confirmation) {
-        // Logic การส่งคำสั่งซื้อ (เราจะทำในขั้นตอนต่อไป)
-        alert("ขอบคุณสำหรับคำสั่งซื้อ!");
-        cart = []; // ล้างตะกร้าหลังจากสั่งซื้อ
-        updateCartDisplay();
+        // สร้างข้อมูลออเดอร์ที่จะส่ง
+        const orderSummary = {
+            items: cart.map(item => ({
+                id: item.id,
+                name: item.name,
+                price: item.price
+            })),
+            total: cart.reduce((sum, item) => sum + item.price, 0).toFixed(2),
+            timestamp: new Date().toLocaleString()
+            // สามารถเพิ่มข้อมูลอื่นๆ ได้ เช่น หมายเลขโต๊ะ
+        };
+
+        // *** ส่วนนี้คือโค้ดสำหรับส่งข้อมูลไปยัง Backend Server ***
+        fetch('http://localhost:3000/order', { // URL ของ Backend Server
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(orderSummary)
+        })
+        .then(response => {
+            if (!response.ok) { // ตรวจสอบสถานะ HTTP
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Server response:', data);
+            alert("คำสั่งซื้อถูกส่งแล้ว! ขอบคุณครับ/ค่ะ");
+            cart = []; // ล้างตะกร้าหลังจากสั่งซื้อ
+            updateCartDisplay();
+        })
+        .catch(error => {
+            console.error('Error sending order:', error);
+            alert("เกิดข้อผิดพลาดในการส่งคำสั่งซื้อ กรุณาลองอีกครั้ง");
+        });
     }
 }
 
-// โหลดเมนูเมื่อ HTML พร้อมใช้งาน (เหมือนเดิม)
+// โหลดเมนูเมื่อ HTML พร้อมใช้งาน
 document.addEventListener('DOMContentLoaded', function() {
     // โหลดเมนู
-    displayMenuItems(menuItems); // บรรทัดนี้คือบรรทัด 46 หากไม่ได้เพิ่ม/ลดบรรทัดอื่น
+    displayMenuItems(menuItems);
 
     // อัปเดตตะกร้าสินค้าเมื่อเริ่มต้น
     updateCartDisplay();
